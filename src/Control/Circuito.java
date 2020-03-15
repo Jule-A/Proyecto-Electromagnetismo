@@ -12,19 +12,21 @@ import java.awt.Graphics;
 public class Circuito {    
     private Fuente atrBateria;
     private boolean atrEstado;
-    private double atrCaidaVoltaje;
-    private double atrCaidaCorriente;
+    private float atrCaidaVoltaje;
+    private float atrCaidaCorriente;
     private Led atrLed;
+    private float atrResistencia;
     
-    public void EstadoNuevo(float voltaje, double corriente){
+    public void EstadoNuevo(float voltaje, float corriente, float resistencia){
         atrBateria.setVoltaje(voltaje);
-        atrLed.EstadoNuevo(voltaje, corriente);
+        atrLed.EstadoNuevo(voltaje, corriente, atrResistencia + resistencia);
     }
     
     public Circuito(){
         atrBateria = new Fuente();
         atrEstado = false;
         atrLed = new Led();
+        atrResistencia = 300;
     }
     
     public void Draw(Graphics g, int x, int y){

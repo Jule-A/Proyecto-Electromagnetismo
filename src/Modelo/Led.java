@@ -10,24 +10,25 @@ import java.awt.Polygon;
  */
 public class Led {
     private float atrVoltaje;
-    private double atrCorriente;
-    private boolean atrEstado;
+    private float atrCorriente;
     private Color atrColor;
     
     public Led(){
         atrVoltaje = 4;
-        atrCorriente = 20;
-        atrEstado = false;
-        atrColor = Color.WHITE;
+        atrCorriente = 0.02f;
+        atrColor = new Color(200, 0, 0, 0);
     }
     
-    public void EstadoNuevo(float voltaje, double corriente){
-        if (voltaje>atrVoltaje)
-            atrColor = Color.BLACK;
-        else{
-            int varAlpha = Math.round((voltaje*250)/atrVoltaje);
-            atrColor = new Color(200,0,0,varAlpha);
-        } 
+    public void EstadoNuevo(float voltaje, float corriente, float resistencia){
+        if (voltaje >= atrVoltaje) {
+            float varResistenciaNecesaria = (voltaje - atrVoltaje) / atrCorriente;
+            if (resistencia < varResistenciaNecesaria) {
+                atrColor = Color.BLACK;
+            } else {
+                int varAlpha = Math.round((varResistenciaNecesaria * 250) / resistencia);
+                atrColor = new Color(200, 0, 0, varAlpha);
+            }
+        }
     }
     
     public void Draw(Graphics g, int x, int y){

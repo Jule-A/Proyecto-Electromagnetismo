@@ -8,15 +8,15 @@ import java.awt.Graphics;
  * @author julia
  */
 public class Fuente {
-    private double atrFuenteVoltaje;
-    private double atrFuenteCorriente;
+    private float atrFuenteVoltaje;
+    private float atrFuenteCorriente;
     
     public Fuente(){
         atrFuenteVoltaje = 5;
-        atrFuenteCorriente = 500;
+        atrFuenteCorriente = 0.5f;
     }
     
-    public void setVoltaje(double voltaje){
+    public void setVoltaje(float voltaje){
         atrFuenteVoltaje = voltaje;        
     }
     
